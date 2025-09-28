@@ -1,50 +1,3 @@
-class Producto{
-    constructor(id, nombre, precio_unidad, cantidad){    
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio_unidad;
-        this.cantidad = cantidad;
-    }
-
-    subtotal(){
-        return this.precio*this.cantidad;
-    }
-
-    getId(){
-        return this.id;
-    }
-
-    setId(nuevo_id){
-        this.id = nuevo_id;
-    }
-
-    getNombre(){
-        return this.nombre;
-    }
-
-    setNombre(nuevo_nombre){
-        this.nombre = nuevo_nombre;
-    }
-
-    getPrecio() {
-        return this.precio;
-    }
-
-    setPrecio(nuevo_precio) {
-        this.precio = nuevo_precio;
-    }
-
-    getCantidad() {
-        return this.cantidad;
-    }
-
-    setCantidad(nuevo_cantidad) {
-        this.cantidad = nuevo_cantidad;
-    }
-}
-
-/*FUNCIONES*/
-
 function mostrarLista(lista){
     console.log("\n-----------LISTA DE COMPRAS-----------\n");
     for (let i = 0; i < lista.length; i++) {
@@ -138,8 +91,35 @@ function dividirGastos(lista, aportes) {
 
 }
 
+function agregarProducto(lista){
+    let nuevo = new Producto();
+    nuevo.setId(prompt("Ingrese un ID unico: "));
+    nuevo.setNombre(prompt("Ingrese un nombre: "));
+    nuevo.setCantidad(prompt("Ingrese la cantidad: "));
+    nuevo.setPrecio(prompt("Ingrese precio: "));
+    lista.push(nuevo);
+}
+
+function mostrarProducto(lista, prod){
+    let j = -1; // Indice buscado
+    for (let index = 0; index < lista.length && j<0; index++) {
+        if(lista[index].getNombre().toUpperCase() == prod.toUpperCase()) {
+            j = index;
+        }        
+    }
+    if( j>-1){
+        alert("Prod.: #" + lista[j].id + " - Nombre "+ lista[j].getNombre().toUpperCase() + 
+        ", Cant.: " + lista[j].getCantidad() + 
+        ", Precio: $" + lista[j].getPrecio() + 
+        ", SubTotal: " + lista[j].subtotal() + "\n");
+    }
+    else{
+        alert("No se encuentra producto ingresado.");
+    }
+}
+
 function mostrarMenu() {
-    let respuesta = prompt("MENÚ PRINCIPAL \n1) Mostrar Lista de Compras. \n2) Mostrar Aportes. \n3) Total del azado. \n4) Actualizar Precio de Producto. \n5) Actualizar Cantidad de Producto. \n6) Dividir Gastos. \n7) Salir.");
+    let respuesta = prompt("MENÚ PRINCIPAL \n1) Mostrar Lista de Compras. \n2) Mostrar Aportes. \n3) Total del azado. \n4) Actualizar Precio de Producto. \n5) Actualizar Cantidad de Producto. \n6) Dividir Gastos. \n7) Buscar Producto. \n8) Agregar Producto. \n9) Salir.");
 
     switch (respuesta) {
         case '1':
@@ -167,7 +147,15 @@ function mostrarMenu() {
             dividirGastos(lista, aportes);
         break;
 
-        case '7': 
+        case '7':
+            mostrarProducto(lista, prompt("Ingrese nombre del producto a mostrar: "));
+        break;
+        
+        case '8':
+            agregarProducto(lista);
+        break;
+
+        case '9': 
             respuesta = false;
         break;
 
