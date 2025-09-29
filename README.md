@@ -7,3 +7,5 @@ Modificaciones:
 - Se agrega ingresar producto a la lista de compras.
 
 - En la carpeta js, separo las funciones y las clases en arch separados.
+
+- Se agrega ordenar lista por precio.

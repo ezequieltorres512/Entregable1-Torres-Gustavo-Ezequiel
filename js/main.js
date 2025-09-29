@@ -100,6 +100,10 @@ function agregarProducto(lista){
     lista.push(nuevo);
 }
 
+function ordenarPrecio(lista){
+    lista.sort( (a,b ) => a.precio - b.precio );
+}   
+
 function mostrarProducto(lista, prod){
     let j = -1; // Indice buscado
     for (let index = 0; index < lista.length && j<0; index++) {
@@ -119,7 +123,7 @@ function mostrarProducto(lista, prod){
 }
 
 function mostrarMenu() {
-    let respuesta = prompt("MENÚ PRINCIPAL \n1) Mostrar Lista de Compras. \n2) Mostrar Aportes. \n3) Total del azado. \n4) Actualizar Precio de Producto. \n5) Actualizar Cantidad de Producto. \n6) Dividir Gastos. \n7) Buscar Producto. \n8) Agregar Producto. \n9) Salir.");
+    let respuesta = prompt("MENÚ PRINCIPAL \n1) Mostrar Lista de Compras. \n2) Mostrar Aportes. \n3) Total del azado. \n4) Actualizar Precio de Producto. \n5) Actualizar Cantidad de Producto. \n6) Dividir Gastos. \n7) Buscar Producto. \n8) Agregar Producto. \n9) Ordenar precio de menor a mayor. \n10) Salir.");
 
     switch (respuesta) {
         case '1':
@@ -155,7 +159,12 @@ function mostrarMenu() {
             agregarProducto(lista);
         break;
 
-        case '9': 
+        case'9':
+            ordenarPrecio(lista);
+            alert("Lista Ordenada");
+        break;
+
+        case '10': 
             respuesta = false;
         break;
 
